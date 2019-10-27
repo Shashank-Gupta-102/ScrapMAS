@@ -1,1 +1,1 @@
-#This is a craigslist clone called... Codedaddies List.
+ScrapMAS django code
