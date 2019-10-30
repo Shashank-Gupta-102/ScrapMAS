@@ -1,1 +1,0 @@
-ScrapMAS django code
