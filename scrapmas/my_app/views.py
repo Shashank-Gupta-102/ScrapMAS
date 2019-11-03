@@ -14,7 +14,6 @@ def home(request):
 
 def new_search(request):
     search = request.POST.get('search')
-    models.Search.objects.create(search=search)
 
 
     res=requests.get("https://www.google.com/search?q="+search)
@@ -51,17 +50,20 @@ def new_search(request):
     soup=bs4.BeautifulSoup(page.text,'lxml')
     content=soup.select('p')
     post_content=""
+    post_content_list=[]
     for x in content:
         post_content+=((x.get_text())+"\n")
+        post_content_list.append(x.get_text())
 
     post_url=unique_list
     final_postings.append((post_title, post_url))
+    models.Search.objects.create(search=search, content=post_content)
 
     stuff_for_frontend = {
             
         'search': search,
         'final_postings': final_postings,
-        'content': post_content,
+        'content': post_content_list,
     }
 
     return render(request, 'my_app/new_search.html', stuff_for_frontend)

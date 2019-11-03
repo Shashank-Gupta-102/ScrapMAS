@@ -1,13 +1,41 @@
-{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
 
-{% block content %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ScrapMAS - Find any software easy!</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+</head>
+<body>
+        
+
+<nav>
+    <div class="container nav-wrapper">
+        <a href="/" class="brand-logo">ScrapMAS</a>
+        <ul id="nav-mobile" class="right">
+            <li><a href="/">Home</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
     <h2 style="text-align: center">{{ search | title }}</h2>
 
     <div class="row">
         {% for post in final_postings %}
             <div class="col s4">
                 <div class="card">
-                    
+                    <div class="card-image">
+                        <a href="{{ post.1 }}"><img src="http://www.firstfortrophies.co.uk/prodimages/AM1022_01.jpg" alt="" style="height: 250px; width: 250px; position: absolute; left: 45px;"></a>
+                    </div>
                     <div class="card-content">
                         <p>{{ post.0 }}</p>
                     </div>
@@ -17,12 +45,56 @@
                     </div>
                 </div>
             </div>
+            <div class="col s4">
+                <div class="card">
+                    <div class="card-image">
+                        <a href="{{ post.1 }}"><img src="https://www.trophykits.com/images/gt/SB163-1.jpg" alt="" style="height: 250px; width: 250px; position: absolute; left: 45px;"></a>
+                    </div>
+                    <div class="card-content">
+                        <p>{{ post.0 }}</p>
+                    </div>
+
+                    <div class="card-action">
+                        <a href="{{ post.1.5 }}">URL 2: Web scraped successfully!  </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s4">
+                <div class="card">
+                    <div class="card-image">
+                        <a href="{{ post.1 }}"><img src="https://www.trophiesplusmedals.co.uk/wp-content/uploads/2016/12/Bronze-3rd-Place-Galaxy-Medal-45mm-1.5.jpg" alt="" style="height: 250px; width: 250px; position: absolute; left: 45px;"></a>
+                    </div>
+                    <div class="card-content">
+                        <p>{{ post.0 }}</p>
+                    </div>
+
+                    <div class="card-action">
+                        <a href="{{ post.1.6 }}">URL 3: Web scraped successfully! </a>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
     </div>
-    <div class="row">
-        Content:
-        {{content}}
-    </div>
-{% endblock content %}
 
+    <div class="row">
+            <h2 style="text-align: center">Scraped data from URL 1</h2>
+
+            <div class="col s12">
+                        
+                Content:
+                {% for para in content %}
+                {{para}}
+                <hr>
+                {% endfor %}
+    
+            </div>
+        
+    </div>
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
 
