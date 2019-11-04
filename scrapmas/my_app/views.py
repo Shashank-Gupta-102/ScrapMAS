@@ -22,12 +22,12 @@ def new_search(request):
     soup=bs4.BeautifulSoup(res.text,'lxml')
 
     url_list=[]
-
     for a in soup.select(' a[href^="/url?q="]'):
         if 'accounts.google.com' in a['href']:
             continue
         s=a['href']
-        start=s.find('q=')+2
+        offsset=2
+        start=s.find('q=')+offset
         end=s.find('&sa=')
         url_list.append(s[start:end])
     
